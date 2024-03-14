@@ -2,12 +2,20 @@ from .models import Products, Categories, Sales, Expenses
 from django.db.models import Sum, IntegerField
 from .serializers import ProductSerializer, CategorySerializer,SalesSerializer,SaleSerializer, ExpenseSerializer
 from .serializers import CategoryTotalSerializer
+from django.conf import settings
 
 
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
+from .access_token import generate_access_token
+from .utils import timestamp_conversion
+from .encode_base64 import generate_password
+import requests
+import json
+
 
 #Products Logic
 @api_view(['GET','POST'])
@@ -120,3 +128,37 @@ def category_analysis(request, format=None):
 
         # Return the serialized data as JSON response
         return Response(serializer.data)
+    
+#mpesa daraja stk push
+@api_view(['POST'])
+def mpesa(request, format=None):
+    data = json.loads(request.body)
+    amount = data.get('amount')
+    phone = data.get('phone_number')
+
+    access_token=generate_access_token()
+    formated_time= timestamp_conversion()
+    decoded_password= generate_password(formated_time)
+
+    headers={"Authorization":"Bearer %s" %access_token}
+    request={
+            "BusinessShortCode": settings.BUSINESS_SHORT_CODE,
+            "Password": decoded_password,
+            "Timestamp": formated_time,
+            "TransactionType": settings.TRANSACTION_TYPE,
+            "Amount": amount,
+            "PartyA": phone,
+            "PartyB": settings.BUSINESS_SHORT_CODE,
+            "PhoneNumber": phone,
+            "CallBackURL": settings.CALL_BACK_URL,
+            "AccountReference": settings.ACCOUNT_REFERENCE,
+            "TransactionDesc":settings.TRANSACTION_DESCRIPTION
+            }
+    response= requests.post(settings.API_RESOURCE_URL, json=request,headers=headers)
+    mystr=response.text
+    json_response= json.loads(mystr)
+    
+
+
+
+    return Response(json_response)

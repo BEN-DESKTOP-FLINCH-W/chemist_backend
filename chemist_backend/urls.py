@@ -29,6 +29,7 @@ urlpatterns = [
     path('sales/', views.sales_list),
     path('expenses/', views.expenses_list),
     path('analysis/', views.category_analysis),
+    path('mpesa/', views.mpesa),
 
 
 ]

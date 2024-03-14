@@ -129,3 +129,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#mpesa
+CALL_BACK_URL="http://127.0.0.1:8000/mpesa/"
+BUSINESS_SHORT_CODE="174379"
+TRANSACTION_TYPE="CustomerBuyGoodsOnline"
+TRANSACTION_DESCRIPTION="Payment of X"
+ACCOUNT_REFERENCE="CompanyXLTD"
+API_RESOURCE_URL="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
+ACCESS_TOKEN_URL="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
+LIPANAMPESA_PASSKEY="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
+CONSUMER_KEY="Qlc8JZUjkERQoqA1AAnHQZu89k5CzklQTn5UIwAyaGqZ4vI8"
+CONSUMER_SECRET="1vrzOmj96g6QZvDKJHfzeMu7M29purlRAdbe44HxLmtQAaaLGNWTfSMiogI10nli"
