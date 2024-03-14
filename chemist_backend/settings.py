@@ -131,11 +131,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #mpesa
-CALL_BACK_URL="http://127.0.0.1:8000/mpesa/"
+CALL_BACK_URL="https://friendly.topend-consult.com/"
 BUSINESS_SHORT_CODE="174379"
 TRANSACTION_TYPE="CustomerBuyGoodsOnline"
-TRANSACTION_DESCRIPTION="Payment of X"
-ACCOUNT_REFERENCE="CompanyXLTD"
+TRANSACTION_DESCRIPTION="Payment of Avocado"
+ACCOUNT_REFERENCE="Suebesh"
 API_RESOURCE_URL="https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"
 ACCESS_TOKEN_URL="https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials"
 LIPANAMPESA_PASSKEY="bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
